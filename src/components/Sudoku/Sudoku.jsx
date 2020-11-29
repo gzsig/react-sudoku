@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button'
 
 // Sudoku uses numbers 1-9
 const SIZE = 9;
@@ -268,12 +269,12 @@ class Sudoku extends React.Component {
             </tbody>
           </table>
           <br />
-          <button onClick={this.checkSolution}>
+          <Button onClick={this.checkSolution}>
             Check Solution
-        </button>&nbsp;
-        <button onClick={this.clearPuzzle}>
+        </Button>&nbsp;
+        <Button onClick={this.clearPuzzle}>
             Clear Puzzle
-        </button>
+        </Button>
           <br /><br />
           <label>
             <small>Difficulty: </small>
@@ -285,9 +286,9 @@ class Sudoku extends React.Component {
               onChange={this.changeDifficulty}
             />
           </label>&nbsp;
-        <button onClick={this.newPuzzle}>
+        <Button onClick={this.newPuzzle}>
             New Puzzle
-        </button>
+        </Button>
         </div>
       </>
 

@@ -20,6 +20,7 @@ body {
 table {
   border: 1px solid #666;
   border-collapse: collapse;
+  margin: auto;
 }
 
 td {
@@ -27,7 +28,7 @@ td {
 }
 
 table input {
-  font-size: 14px;
+  font-size: 18px;
   height: 30px;
   text-align: center;
   width: 30px;
@@ -36,6 +37,7 @@ table input {
 
 table input:not([readonly]) {
   font-weight: bold;
+  color: #4d73a0;
 }
 
 tr:nth-child(3n):not(:last-child) > td {
