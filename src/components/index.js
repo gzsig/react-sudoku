@@ -1,1 +1,2 @@
-export { default } from "./Sudoku";
+export { Sudoku } from "./logic";
+export { Button } from "./display";

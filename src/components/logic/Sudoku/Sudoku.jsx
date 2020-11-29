@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../Button'
+import { Button } from '../../display'
 
 // Sudoku uses numbers 1-9
 const SIZE = 9;
@@ -296,4 +296,4 @@ class Sudoku extends React.Component {
   }
 }
 
-export default Sudoku
+export { Sudoku }
