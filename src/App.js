@@ -1,9 +1,11 @@
 import "./App.css";
 import { Sudoku } from "./components";
+import { Header } from "./components";
 
 function App() {
   return (
     <div className="App">
+      <Header></Header>
       <Sudoku />
     </div>
   );
