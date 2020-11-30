@@ -5,7 +5,7 @@ import { Header } from "./components";
 function App() {
   return (
     <div className="App">
-      <Header></Header>
+      <Header />
       <Sudoku />
     </div>
   );

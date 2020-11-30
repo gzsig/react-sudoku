@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const SliderContainer = styled('div')`
-  width: 35%; 
+  width: 70%; 
   margin: auto;
 `
 const SliderStyle = styled('input')`

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const ButtonContainer = styled('button')`
     font-family: 'Roboto';
-    font-size: 14px;
+    font-size: 16px;
     background-color: #90caf9;
     height: min-content;
     width: max-content;

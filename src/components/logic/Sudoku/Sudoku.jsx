@@ -168,13 +168,11 @@ class Sudoku extends React.Component {
     this.newPuzzle();
   }
 
-
   // Focuses puzzle cell when clicked.
 
   handleCellClick({ target }) {
     target.select();
   }
-
 
   // Navigates puzzle and records user's attempt.
 
@@ -192,8 +190,6 @@ class Sudoku extends React.Component {
     }
   };
 
-
-
   // Checks if puzzle is solved.
 
   checkSolution = () => {
@@ -205,7 +201,6 @@ class Sudoku extends React.Component {
     }
   };
 
-
   // Clears puzzle attempt.
 
   clearPuzzle = () => {
@@ -213,8 +208,6 @@ class Sudoku extends React.Component {
       attempt: state.puzzle.map(row => row.slice()),
     }));
   };
-
-
 
   // Generates a new puzzle.
 
@@ -229,7 +222,6 @@ class Sudoku extends React.Component {
       };
     });
   };
-
 
   // Changes puzzle difficulty.
 
@@ -252,7 +244,7 @@ class Sudoku extends React.Component {
                     <td key={x}>
                       <input
                         type="text"
-                        pattern="[0-9]"
+                        pattern="[1-9]"
                         maxLength="1"
                         formNoValidate
                         data-x={x}
@@ -271,7 +263,7 @@ class Sudoku extends React.Component {
           </table>
           <br />
           <label>
-            <small>Difficulty: </small>
+            Level: {difficulty * 10}
             <Slider
               type="range"
               min={0}
