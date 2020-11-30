@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '../../display'
+import { Slider } from '../../display'
 
 // Sudoku uses numbers 1-9
 const SIZE = 9;
@@ -167,16 +168,16 @@ class Sudoku extends React.Component {
     this.newPuzzle();
   }
 
-  /**
-   * Focuses puzzle cell when clicked.
-   */
+
+  // Focuses puzzle cell when clicked.
+
   handleCellClick({ target }) {
     target.select();
   }
 
-  /**
-   * Navigates puzzle and records user's attempt.
-   */
+
+  // Navigates puzzle and records user's attempt.
+
   onChange = ({ key, target }) => {
     let { x, y, } = target.dataset;
     x = Number(x);
@@ -192,9 +193,9 @@ class Sudoku extends React.Component {
   };
 
 
-  /**
-   * Checks if puzzle is solved.
-   */
+
+  // Checks if puzzle is solved.
+
   checkSolution = () => {
     const { attempt, solutionJSON } = this.state;
     if (JSON.stringify(attempt) === solutionJSON) {
@@ -204,9 +205,9 @@ class Sudoku extends React.Component {
     }
   };
 
-  /**
-   * Clears puzzle attempt.
-   */
+
+  // Clears puzzle attempt.
+
   clearPuzzle = () => {
     this.setState(state => ({
       attempt: state.puzzle.map(row => row.slice()),
@@ -214,9 +215,9 @@ class Sudoku extends React.Component {
   };
 
 
-  /**
-   * Generates a new puzzle.
-   */
+
+  // Generates a new puzzle.
+
   newPuzzle = () => {
     this.setState(({ difficulty }) => {
       const { puzzle, solution } = createGame(difficulty);
@@ -229,9 +230,9 @@ class Sudoku extends React.Component {
     });
   };
 
-  /**
-    * Changes puzzle difficulty.
-    */
+
+  // Changes puzzle difficulty.
+
   changeDifficulty = ({ target }) => {
     this.setState(() => ({
       difficulty: Number(target.value),
@@ -269,26 +270,27 @@ class Sudoku extends React.Component {
             </tbody>
           </table>
           <br />
-          <Button onClick={this.checkSolution}>
-            Check Solution
-        </Button>&nbsp;
-        <Button onClick={this.clearPuzzle}>
-            Clear Puzzle
-        </Button>
-          <br /><br />
           <label>
             <small>Difficulty: </small>
-            <input
-              type="number"
+            <Slider
+              type="range"
               min={0}
               max={1}
+              step={0.1}
               value={difficulty}
               onChange={this.changeDifficulty}
-            />
+            ></Slider>
           </label>&nbsp;
-        <Button onClick={this.newPuzzle}>
-            New Puzzle
-        </Button>
+          <br/>
+          <Button onClick={this.checkSolution}>
+            Check Solution
+          </Button>&nbsp;
+          <Button onClick={this.clearPuzzle}>
+              Clear Puzzle
+          </Button>&nbsp;
+          <Button onClick={this.newPuzzle}>
+              New Puzzle
+          </Button>
         </div>
       </>
 

@@ -49,6 +49,6 @@ td:nth-child(3n):not(:last-child) {
 }
 
 /* difficulty */
-label input {
+/* label input {
   width: 50px;
-}
+} */
