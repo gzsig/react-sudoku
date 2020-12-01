@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '../../display'
 import { Slider } from '../../display'
+import { Numbers } from '../../display'
 
 // Sudoku uses numbers 1-9
 const SIZE = 9;
@@ -156,16 +157,35 @@ const createGame = difficulty => {
 
 class Sudoku extends React.Component {
 
-  state = {
-    attempt: [],
-    difficulty: 0.5,
-    puzzle: [],
-    solution: [],
-    solutionJSON: '',
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      attempt: [],
+      difficulty: 0.5,
+      puzzle: [],
+      solution: [],
+      solutionJSON: '',
+      lastInput: undefined
+    };
+  }
+
 
   componentDidMount() {
     this.newPuzzle();
+  }
+
+  componentDidUpdate = () => {
+    document.body.onclick = (e) => {
+      if (e.target.tagName === "INPUT" /* && e.target.className === "editavel"*/) {
+
+        this.setState(state => ({ lastInput: e.target }))
+
+        // if (lastInput)
+        //   lastInput.className = "";
+        // lastInput = e.target;
+        // lastInput.className = "sel";
+      }
+    };
   }
 
   // Focuses puzzle cell when clicked.
@@ -174,12 +194,35 @@ class Sudoku extends React.Component {
     target.select();
   }
 
+  setValue = ({ target }) => {
+
+    if (!this.state.lastInput.readOnly) {
+      this.state.lastInput.value = target.value
+
+      let { x, y, } = this.state.lastInput.dataset;
+
+      x = Number(x);
+      y = Number(y);
+
+      this.setState(state => {
+        const attempt = state.attempt.map(row => row.slice());
+        attempt[y][x] = parseInt(target.value) //|| (this.state.lastInput.value.length > 1 ? null : this.state.lastInput.value);
+        return { attempt };
+      });
+    }
+
+  }
+
   // Navigates puzzle and records user's attempt.
 
   onChange = ({ key, target }) => {
     let { x, y, } = target.dataset;
     x = Number(x);
     y = Number(y);
+
+    if (![1, 2, 3, 4, 5, 6, 7, 8, 9].includes(parseInt(key))) {
+      return
+    }
 
     if (!target.readOnly) {
       this.setState(state => {
@@ -262,6 +305,8 @@ class Sudoku extends React.Component {
             </tbody>
           </table>
           <br />
+          <Numbers onClick={this.setValue} />
+          <br />
           <label>
             Level: {difficulty * 10}
             <Slider
@@ -273,15 +318,15 @@ class Sudoku extends React.Component {
               onChange={this.changeDifficulty}
             ></Slider>
           </label>&nbsp;
-          <br/>
+          <br />
           <Button onClick={this.checkSolution}>
             Check Solution
           </Button>&nbsp;
           <Button onClick={this.clearPuzzle}>
-              Clear Puzzle
+            Clear Puzzle
           </Button>&nbsp;
           <Button onClick={this.newPuzzle}>
-              New Puzzle
+            New Puzzle
           </Button>
         </div>
       </>
