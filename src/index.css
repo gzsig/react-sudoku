@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -18,23 +22,33 @@ body {
 
 /* Sudoku */
 table {
-  border: 2px solid #6c6c6c;
+  border: 3px solid #6c6c6c;
   border-collapse: collapse;
   margin: auto;
 }
 
 td {
-  padding: 0;
-  border: none;
+  padding: 3px;
+  border: 1px solid #ccc;
 }
 
-table input {
+td > input {
+  background: none;
+  background-color: transparent;
+  border: 0 none transparent;
+  appearance: none;
+  border-radius: 0;
+  color: inherit;
+  display: block;
+  width: 100%;
+  margin: 0;
+  box-shadow: none;
+  padding: 10px;
   font-size: 18px;
   height: 30px;
   text-align: center;
   width: 30px;
   caret-color: transparent;
-  /* background-color: transparent; */
 }
 
 table input:not([readonly]) {
@@ -43,11 +57,30 @@ table input:not([readonly]) {
 }
 
 tr:nth-child(3n):not(:last-child) > td {
-  border-bottom: 2px solid #6c6c6c;
+  border-bottom: 3px solid #6c6c6c;
 }
 
 td:nth-child(3n):not(:last-child) {
-  border-right: 2px solid #6c6c6c;
+  border-right: 3px solid #6c6c6c;
+}
+
+/* DARK THEME */
+
+body[data-theme=dark] table {
+  border-color: #939393;
+  background-color: #353B45;
+}
+
+body[data-theme=dark] td {
+  border-color: #6c6c6c;
+}
+
+body[data-theme=dark] tr:nth-child(3n):not(:last-child) > td {
+  border-bottom: 3px solid #939393;
+}
+
+body[data-theme=dark] td:nth-child(3n):not(:last-child) {
+  border-right: 3px solid #939393;
 }
 
 /* difficulty */
