@@ -7,7 +7,7 @@ const NumbersContainer = styled('div')`
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
-  margin: 0 auto;
+  margin: 5px auto;
 
 `
 

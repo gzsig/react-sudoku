@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '../../display'
 import { Slider } from '../../display'
 import { Numbers } from '../../display'
+import { BiCheck } from 'react-icons/bi'
 
 // Sudoku uses numbers 1-9
 const SIZE = 9;
@@ -195,6 +196,7 @@ class Sudoku extends React.Component {
   }
 
   setValue = ({ target }) => {
+    if (this.state.lastInput === undefined) return
 
     if (!this.state.lastInput.readOnly) {
       this.state.lastInput.value = target.value
@@ -235,12 +237,15 @@ class Sudoku extends React.Component {
 
   // Checks if puzzle is solved.
 
-  checkSolution = () => {
+  checkSolution = ({ target }) => {
+    console.log(target)
     const { attempt, solutionJSON } = this.state;
     if (JSON.stringify(attempt) === solutionJSON) {
       alert('Solved!');
+      
     } else {
       alert('Not solved.');
+      
     }
   };
 
@@ -304,9 +309,9 @@ class Sudoku extends React.Component {
               ))}
             </tbody>
           </table>
-          <br />
+
           <Numbers onClick={this.setValue} />
-          <br />
+
           <label>
             Level: {difficulty * 10}
             <Slider
@@ -317,17 +322,12 @@ class Sudoku extends React.Component {
               value={difficulty}
               onChange={this.changeDifficulty}
             ></Slider>
-          </label>&nbsp;
-          <br />
-          <Button onClick={this.checkSolution}>
-            Check Solution
-          </Button>&nbsp;
-          <Button onClick={this.clearPuzzle}>
-            Clear Puzzle
-          </Button>&nbsp;
-          <Button onClick={this.newPuzzle}>
-            New Puzzle
-          </Button>
+          </label>
+          <div className="buttons_container">
+            <Button onClick={this.checkSolution} name='Check Solution' />
+            <Button onClick={this.newPuzzle} name={'New Puzzle'} />
+            <Button onClick={this.clearPuzzle} name={'Clear Puzzle'} />
+          </div>
         </div>
       </>
 

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 const SliderContainer = styled('div')`
-  width: 70%; 
-  margin: auto;
+  width: 75%; 
+  margin: 10px auto;
 `
 const SliderStyle = styled('input')`
   /* slide bar */
@@ -17,7 +17,7 @@ const SliderStyle = styled('input')`
     transition: opacity .2s;
 
   &:hover {
-    opacity: 1;
+    opacity: 0.9;
   }
   /* slider */
   &::-webkit-slider-thumb {
@@ -29,6 +29,12 @@ const SliderStyle = styled('input')`
     background: #347383;
     border: none;
     cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+      width: 24px;
+      height: 14px;
+    }
   }
 
   &::-moz-range-thumb {
@@ -38,6 +44,12 @@ const SliderStyle = styled('input')`
     background: #347383;
     border: none;
     cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+      width: 24px;
+      height: 14px;
+    }
 }
 `
 
