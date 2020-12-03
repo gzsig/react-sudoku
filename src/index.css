@@ -4,16 +4,26 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 body {
@@ -21,6 +31,7 @@ body {
 }
 
 /* Sudoku */
+
 table {
   border: 3px solid #6c6c6c;
   border-collapse: collapse;
@@ -32,7 +43,7 @@ td {
   border: 1px solid #ccc;
 }
 
-td > input {
+td>input {
   background: none;
   background-color: transparent;
   border: 0 none transparent;
@@ -56,7 +67,7 @@ table input:not([readonly]) {
   color: #4d73a0;
 }
 
-tr:nth-child(3n):not(:last-child) > td {
+tr:nth-child(3n):not(:last-child)>td {
   border-bottom: 3px solid #6c6c6c;
 }
 
@@ -72,6 +83,11 @@ td:nth-child(3n):not(:last-child) {
   text-align: center;
 }
 
+label {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+}
+
 /* DARK THEME */
 
 body[data-theme=dark] table {
@@ -83,7 +99,7 @@ body[data-theme=dark] td {
   border-color: #6c6c6c;
 }
 
-body[data-theme=dark] tr:nth-child(3n):not(:last-child) > td {
+body[data-theme=dark] tr:nth-child(3n):not(:last-child)>td {
   border-bottom: 3px solid #939393;
 }
 
@@ -92,6 +108,7 @@ body[data-theme=dark] td:nth-child(3n):not(:last-child) {
 }
 
 /* difficulty */
+
 /* label input {
   width: 50px;
 } */

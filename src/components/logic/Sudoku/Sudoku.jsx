@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from '../../display'
 import { Slider } from '../../display'
 import { Numbers } from '../../display'
-import { BiCheck } from 'react-icons/bi'
 
 // Sudoku uses numbers 1-9
 const SIZE = 9;
@@ -166,7 +165,10 @@ class Sudoku extends React.Component {
       puzzle: [],
       solution: [],
       solutionJSON: '',
-      lastInput: undefined
+      lastInput: undefined,
+      solved: false, 
+      buttonColor: '#90caf9',
+      checkSolutionButtonText: 'Check Solution'
     };
   }
 
@@ -181,10 +183,6 @@ class Sudoku extends React.Component {
 
         this.setState(state => ({ lastInput: e.target }))
 
-        // if (lastInput)
-        //   lastInput.className = "";
-        // lastInput = e.target;
-        // lastInput.className = "sel";
       }
     };
   }
@@ -199,6 +197,7 @@ class Sudoku extends React.Component {
     if (this.state.lastInput === undefined) return
 
     if (!this.state.lastInput.readOnly) {
+      // eslint-disable-next-line
       this.state.lastInput.value = target.value
 
       let { x, y, } = this.state.lastInput.dataset;
@@ -241,11 +240,18 @@ class Sudoku extends React.Component {
     console.log(target)
     const { attempt, solutionJSON } = this.state;
     if (JSON.stringify(attempt) === solutionJSON) {
-      alert('Solved!');
-      
+      this.setState({buttonColor: 'green', checkSolutionButtonText: 'Solved!'})
+
+      // alert('Solved!');
+
+
     } else {
-      alert('Not solved.');
-      
+      this.setState({buttonColor: 'red', checkSolutionButtonText: 'Incorrect'})
+      // alert('Not solved.');
+      setTimeout( () => {
+        this.setState({buttonColor: '#90caf9', checkSolutionButtonText: 'Check Solution'})
+      }, 1500)
+
     }
   };
 
@@ -267,6 +273,8 @@ class Sudoku extends React.Component {
         puzzle,
         solution,
         solutionJSON: JSON.stringify(solution),
+        buttonColor: '#90caf9',
+        checkSolutionButtonText: 'Check Solution'
       };
     });
   };
@@ -278,6 +286,31 @@ class Sudoku extends React.Component {
       difficulty: Number(target.value),
     }));
   };
+
+  setLevelName = (difficulty) => {
+    let label = document.getElementById('level')
+    if (!label) return
+    let color = ""
+    difficulty *= 10
+    console.log(label)
+    if (difficulty >= 5) {
+      color = "rgb(255, " + (((11 - difficulty) * 41) + 9) + ", 0)"
+    } else {
+      color = "rgb(" + (((difficulty) * 41) + 9) + ", 255, 0)"
+    }
+    label.style.color = color
+    switch (difficulty) {
+
+      case 0:
+        label.style.color = '#00ff00'
+        return "lazy"
+      
+      case 10:
+        return "creator"
+      default:
+        return difficulty
+    }
+  }
 
   render() {
     const { attempt, difficulty, puzzle } = this.state;
@@ -312,8 +345,8 @@ class Sudoku extends React.Component {
 
           <Numbers onClick={this.setValue} />
 
-          <label>
-            Level: {difficulty * 10}
+          <label id='level'>
+            Level: {this.setLevelName(difficulty)}
             <Slider
               type="range"
               min={0}
@@ -324,7 +357,7 @@ class Sudoku extends React.Component {
             ></Slider>
           </label>
           <div className="buttons_container">
-            <Button onClick={this.checkSolution} name='Check Solution' />
+            <Button onClick={this.checkSolution} name={this.state.checkSolutionButtonText} color={this.state.buttonColor} />
             <Button onClick={this.newPuzzle} name={'New Puzzle'} />
             <Button onClick={this.clearPuzzle} name={'Clear Puzzle'} />
           </div>
