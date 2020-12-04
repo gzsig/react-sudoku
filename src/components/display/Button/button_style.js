@@ -6,7 +6,7 @@ const ButtonContainer = styled('button')`
     background-color: ${props => props.color || '#90caf9'};
     opacity: 0.85;
     height: min-content;
-    width: 80%;
+    width: 85%;
     padding: 8px;
     margin: 3px auto;
     color: #131a21;
@@ -20,7 +20,7 @@ const ButtonContainer = styled('button')`
 
     &:hover {
         background-color: ${props => props.color !== '#90caf9' ? props.color : '#2C99F2' } ;
-        box-shadow: 0px 15px 20px rgba(44, 153, 242, 0.2);
+        box-shadow: 0px 15px 20px rgba(44, 153, 242, 0.1);
         color: #fff;
         
     }
